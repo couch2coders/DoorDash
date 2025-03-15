@@ -1,4 +1,7 @@
-![Logo](./Images/Readme%20Header.png)
+
+<img src="./Images/Readme%20Header.png" style="width:100%; height:auto;">
+
+
 
 # DoorDash
 Case study for Door Dash Senior Analyst

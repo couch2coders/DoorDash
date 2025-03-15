@@ -1,11 +1,6 @@
 
 <img src="./Images/Readme%20Header.png" style="width:100%; height:auto;">
 
-
-
-# DoorDash
-Case study for Door Dash Senior Analyst
-
 ## Executive Summary
 ### TLDR:
 - We expect overall employee churn to be XX with XX level of accuracy in FY 2025

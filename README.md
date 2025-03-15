@@ -1,7 +1,5 @@
-![Logo](./Images/Readme%20Header.png)
 
-# DoorDash
-Case study for Door Dash Senior Analyst
+<img src="./Images/Readme%20Header.png" style="width:100%; height:auto;">
 
 ## Executive Summary
 ### TLDR:

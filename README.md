@@ -13,7 +13,7 @@ Case study for Door Dash Senior Analyst
  
 ### Hypothesis
 *We anticipate pay rate, job function, location, tenure & total promotions are correlated with employee turnover*
-Using these key indicators we will construct an quarterly churn rate for 2025 to ensure consistent staff
+*Using these key indicators we will construct an quarterly churn rate for 2025 to ensure consistent staffing*
 
 ### Data
 *Assumptions*

@@ -4,12 +4,12 @@
 # Executive Summary
 ### TLDR:
 **Summary**
-- We expect overall employee churn to be between 15 - 20% with 80% level of accuracy for FY 2025
+- We expect overall employee churn (net loss) & attrition (total loss) to be 15% & 26% respectively for FY 2025
   - Churn rates vary across job functions, highest rates for Ops & lowest for Engineering/Finance
-  - Largest drivers for churn is employee Tenure & working from either the Seattle or SanFran branches
-    - On average, 1 additional year of tenure is associated with a 5% decrease in churn
-      - Highest rates of churn for associates < 2 years tenure
-    - Seattle & SanFran branches are associated with 5% less churn
+  - Largest drivers for attrition is employee Tenure & working from either the Seattle or SanFran branches
+    - On average, 1 additional year of tenure is associated with a 5% decrease in attrition
+      - Highest rates of attrition for associates < 2 years tenure
+    - Seattle & SanFran branches are associated with 5% less attrition
       
 **Recommendation**
 - Investigating the differences between Seattle/SanFran & the NYC location, as both have similar work forces but different churn rates
@@ -41,16 +41,18 @@ First is an analytical approach where (only includes historical churn rates for 
 
 *Analytical*
 -  We visually inspect the data & apply a standard time series model. Put simply, this is an elevated moving average
-  -  Pros: simple to implement & easy to explain
-  -  Cons: unlikely to catch new trends & difficult to improve since it is only looking at past churn rates
+  -  Pros: simple to implement & easy to explain, predicts churn directly
+  -  Cons: unlikely to catch new trends & has 'self-fulfilling prophecy' as we can directly impact churn by our hiring practices
 
 *ML*
 - We utilize all of our employee data & apply an ML model to predict if our active associates are likely to leave the company
   - Pros: utilizes all of the information at our disposal, more likely to catch new patterns in data, typically more accurate
-  - Cons: somewhat blackbox, difficult derive insights from
+  - Cons: somewhat blackbox, difficult derive insights from, calculates current staff attrition not churn
+
 ### Results
-- For FY 2025 our models predict 15% (time series) to 26% (ML), with wide variation across job type
-- Churn rates show similar results with both models (within 5%) except for  Sales & StrategyOps
+- For FY 2025 our time series model predicts 15% churn & our ML model predicts 26% attrition
+  - since our ML model predicts attrition, not churn, we can back out desired churn by setting a hiring rate & subtracting that from our anticipated attrition rate
+- Churn/Attrition rates show similar results with both models (within 5%) except for  Sales & StrategyOps
   - Largest variation is in Sales & StrategyOps which is to be expected with the spikey data shape (Sales) & inconsistent trend (Strategy) making it difficult to fit a time series model (see **appendix**)
 
 **Model Predictions**
@@ -60,7 +62,7 @@ First is an analytical approach where (only includes historical churn rates for 
 </p>
 
 **Attrition Drivers**
-- The ML model indicates the highest driver of churn is employee Tenure & working in the SanFran/Seattle offices
+- The ML model indicates the highest driver of attrition is employee Tenure & working in the SanFran/Seattle offices
   - each additional year of Tenure is associated with a 5% decrease in attrition, with a steep dropoffs at year 3 & 4
   - Working from SanFran/Seattel is also associated with a 5% decrease in attrition
 
@@ -69,13 +71,9 @@ First is an analytical approach where (only includes historical churn rates for 
   <img src="./Output_Files/tenure_term_rate.svg" width="40%" />
 </p>
 
-
-
-
 ### Recommendation
-- 
-- It is important to note that churn only captures net staff levels, not how many associates ***
-- Biggest opportunities
+- It is important to note that churn only captures net staff levels, not how many associates have left the company
+- Instead of targeting a churn rate, which is directly influenced by companies past hiring rates, we would be better to estimate attrition & set a hiring rate to achieve the desired churn rate
 
 ## Appendix
 
@@ -94,9 +92,9 @@ First is an analytical approach where (only includes historical churn rates for 
 
 *Models - Exponential Smoothing*
 - We use an exponential smoothing model with additive seasonality & trend, this model fits well for Engineering & Sales, but has large misses in the other job types
-  - If we proceed with this method, it is recommended to
-    - switch OpsStrategy to a moving average since it is fairly stable quarter over quarter
-    - investigate why the model overshot for Finance but not Engineering. As both jobs have fairly similar patterns it may be worth combining them
+  - If we proceed with this method, it is recommended to:
+    - Switch OpsStrategy to a moving average since it is fairly stable quarter over quarter
+    - Investigate why the model overshot for Finance but not Engineering. As both jobs have fairly similar patterns it may be worth combining them
 - To measure accuracy, we use first 8 periods in the data to build the model & test on the remaining 4 periods
 - We calculate a weighted MAPE, weighting by a job function (to account for differences in workforce sizes)
 

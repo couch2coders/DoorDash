@@ -1,5 +1,5 @@
 
-<img src="./Images/Readme%20Header.png" style="width:100%; height:auto;">
+<img src="./Images/ReadmeHeader.svg" style="width:100%; height:auto;">
 
 ## Executive Summary
 ### TLDR:

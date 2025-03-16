@@ -6,7 +6,7 @@
 **Summary**
 - We expect overall employee churn (net loss) & turnover (total loss) to be 15% & 26% respectively for FY 2025
   - Churn rates vary across job functions, highest rates for Ops & lowest for Engineering/Finance
-  - Largest drivers for turnover is employee Tenure & working from either the Seattle or SanFran branches
+  - Largest drivers for turnover is employee tenure & working from either the Seattle or SanFran branches
     - On average, 1 additional year of tenure is associated with a 5% decrease in turnover
       - Highest rates of turnover for associates < 2 years tenure
     - Seattle & SanFran branches are associated with 5% less turnover
@@ -21,18 +21,23 @@
 &nbsp;&nbsp;&nbsp;&nbsp;*Using these key indicators we will construct an quarterly churn rate for 2025 to ensure consistent staffing*
 
 ### Data
+
 *Assumptions*
 - Total promotions only include what can be observed in the data (associate may have received a promotion prior to 2022)
 - We assume any job changes in data imply a promotion
+- We assume an employees hire date is the earliest date between recorded hire date & effective date
+  - 26% of the data contained a hire date after a recorded effective date   
 
 *Description*
+
 Given Values
 - Quarterly associate level data from Jan 2022 to Oct 2024
   - Gegraphical (location)
   - Job Type Characteristics (function, level, pay type)
 
 Calculated Values
-- Total tenure & role tenure for associates
+- Total tenure role tenure for associates
+- Total promotions (unique job function/level combinations)
 
 ### Methods
 We use a dual approach to estimate churn in 2025 - analytical & ML. 

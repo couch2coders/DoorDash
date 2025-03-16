@@ -127,4 +127,5 @@ First is an analytical approach where (only includes historical churn rates for 
   - To improve the model having additional factors such as associate age, marital status, & workforce modality could benefit 
 
 ### Code
-
+[Data Prep Code](https://github.com/couch2coders/DoorDash/blob/main/Code%20Files/Data%20Prep.ipynb)
+[Data Modeling Code](https://github.com/couch2coders/DoorDash/blob/main/Code%20Files/Modeling.ipynb)

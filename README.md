@@ -6,8 +6,8 @@
 - We expect overall employee churn to be between 15 - 20% with 80% level of accuracy for FY 2025
   - Churn rates vary across job functions, highest rates for Ops & lowest for Engineering/Finance
 <p float="left">
-  <img src="./Output_Files/xgboost_class_pred.png'" width="45%" />
-  <img src="./Output_Files/xgboost_class_pred.png'" width="45%" />
+  <img src="./Output_Files/ts_class_pred.svg" width="45%" />
+  <img src="./Output_Files/xgboost_class_pred.svg" width="45%" />
 </p>
 
   - Largest drivers for churn include X, Y, Z

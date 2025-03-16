@@ -10,7 +10,9 @@
   <img src="./Output_Files/xgboost_class_pred.svg" width="45%" />
 </p>
 
-  - Largest drivers for churn include X, Y, Z
+  - Largest drivers for churn is employee Tenure & working from either the Seattle or SanFran branches
+    - On average, 1 additional year of tenure is associated with a 5% decrease in churn (with highest rates of churn for associates < 2 years tenure)
+    - Seattle & SanFran branches are associated with 5% less churn  
 - Recommendation
   - To lower churn & increase employee retention we recommend to do X,Y,Z
  

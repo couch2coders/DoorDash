@@ -1,24 +1,24 @@
 
 <img src="./Images/ReadmeHeader.svg" style="width:100%; height:auto;">
 
-## Executive Summary
+# Executive Summary
 ### TLDR:
+**Summary**
 - We expect overall employee churn to be between 15 - 20% with 80% level of accuracy for FY 2025
   - Churn rates vary across job functions, highest rates for Ops & lowest for Engineering/Finance
-<p float="left">
-  <img src="./Output_Files/ts_class_pred.svg" width="45%" />
-  <img src="./Output_Files/xgboost_class_pred.svg" width="45%" />
-</p>
-
   - Largest drivers for churn is employee Tenure & working from either the Seattle or SanFran branches
-    - On average, 1 additional year of tenure is associated with a 5% decrease in churn (with highest rates of churn for associates < 2 years tenure)
-    - Seattle & SanFran branches are associated with 5% less churn  
-- Recommendation
-  - To lower churn & increase employee retention we recommend to do X,Y,Z
+    - On average, 1 additional year of tenure is associated with a 5% decrease in churn
+      - Highest rates of churn for associates < 2 years tenure
+    - Seattle & SanFran branches are associated with 5% less churn
+      
+**Recommendation**
+- Investigating the differences between Seattle/SanFran & the NYC location, as both have similar work forces but different churn rates
+- Paying extra attention to associates with < 2 years of tenure & identify what is driving attrition
  
 ### Hypothesis
-*We anticipate pay rate, job function, location, tenure & total promotions are correlated with employee turnover*
-*Using these key indicators we will construct an quarterly churn rate for 2025 to ensure consistent staffing*
+&nbsp;&nbsp;&nbsp;&nbsp;*We anticipate **pay rate, job function, location, tenure & total promotions** are correlated with employee turnover*
+  
+&nbsp;&nbsp;&nbsp;&nbsp;*Using these key indicators we will construct an quarterly churn rate for 2025 to ensure consistent staffing*
 
 ### Data
 *Assumptions*
@@ -48,8 +48,32 @@ First is an analytical approach where (only includes historical churn rates for 
 - We utilize all of our employee data & apply an ML model to predict if our active associates are likely to leave the company
   - Pros: utilizes all of the information at our disposal, more likely to catch new patterns in data, typically more accurate
   - Cons: somewhat blackbox, difficult derive insights from
- 
+### Results
+- For FY 2025 our models predict 15% (time series) to 26% (ML), with wide variation across job type
+- Churn rates show similar results with both models (within 5%) except for  Sales & StrategyOps
+  - Largest variation is in Sales & StrategyOps which is to be expected with the spikey data shape (Sales) & inconsistent trend (Strategy) making it difficult to fit a time series model (see **appendix**)
+
+**Model Predictions**
+<p float="left">
+  <img src="./Output_Files/ts_class_pred.svg" width="45%" />
+  <img src="./Output_Files/xgboost_class_pred.svg" width="50%" />
+</p>
+
+**Attrition Drivers**
+- The ML model indicates the highest driver of churn is employee Tenure & working in the SanFran/Seattle offices
+  - each additional year of Tenure is associated with a 5% decrease in attrition, with a steep dropoffs at year 3 & 4
+  - Working from SanFran/Seattel is also associated with a 5% decrease in attrition
+
+<p float="left">
+  <img src="./Output_Files/xgboost_importance.svg" width="50%" />
+  <img src="./Output_Files/tenure_term_rate.svg" width="40%" />
+</p>
+
+
+
+
 ### Recommendation
+- 
 - It is important to note that churn only captures net staff levels, not how many associates ***
 - Biggest opportunities
 
@@ -75,6 +99,11 @@ First is an analytical approach where (only includes historical churn rates for 
     - investigate why the model overshot for Finance but not Engineering. As both jobs have fairly similar patterns it may be worth combining them
 - To measure accuracy, we use first 8 periods in the data to build the model & test on the remaining 4 periods
 - We calculate a weighted MAPE, weighting by a job function (to account for differences in workforce sizes)
+
+ <p float="left">
+  <img src="./Output_Files/forecast_Strategy.svg" width="45%" />
+  <img src="./Output_Files/forecast_Sales.svg" width="50%" />
+</p>
 
 *Models - ML*
 - We use XGBOOST Classifier (logistic random forest) to predict if a given associate is likely to leave the company in the next quarter
